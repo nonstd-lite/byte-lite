@@ -27,6 +27,16 @@
 #define byte_BYTE_NONSTD   1
 #define byte_BYTE_STD      2
 
+// tweak header support:
+
+#if defined(__has_include) && __has_include(<nonstd/byte.tweak.hpp>)
+# include <nonstd/byte.tweak.hpp>
+# define byte_HAVE_TWEAK_HEADER  1
+#else
+# define byte_HAVE_TWEAK_HEADER  0
+//# pragma message("byte.hpp: Note: Tweak header not supported.")
+#endif
+
 #if !defined( byte_CONFIG_SELECT_BYTE )
 # define byte_CONFIG_SELECT_BYTE  ( byte_HAVE_STD_BYTE ? byte_BYTE_STD : byte_BYTE_NONSTD )
 #endif

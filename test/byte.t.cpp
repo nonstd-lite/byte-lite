@@ -228,4 +228,13 @@ CASE( "byte: Provides constexpr assignment operations (C++14)" )
 #endif
 }
 
+CASE( "tweak header: reads tweak header if supported " "[tweak]" )
+{
+#if byte_HAVE_TWEAK_HEADER
+    EXPECT( BYTE_TWEAK_VALUE == 42 );
+#else
+    EXPECT( !!"Tweak header is not available (byte_HAVE_TWEAK_HEADER: 0)." );
+#endif
+}
+
 // end of file
