@@ -14,6 +14,7 @@
     - [Types in namespace nonstd](#types-in-namespace-nonstd)
     - [Algorithms for *byte lite*](#algorithms-for-byte-lite)
     - [Configuration macros](#configuration-macros)
+      - [Tweak header](#tweak-header)
       - [Standard selection macro](#standard-selection-macro)
       - [Select `std::byte` or `nonstd::byte`](#select-stdbyte-or-nonstdbyte)
   - [Reported to work with](#reported-to-work-with)
@@ -121,11 +122,17 @@ Synopsis
 
 ### Configuration macros
 
+#### Tweak header
+
+If the compiler supports [`__has_include()`](https://en.cppreference.com/w/cpp/preprocessor/include), *byte lite* supports the [tweak header](https://vector-of-bool.github.io/2020/10/04/lib-configuration.html) mechanism. Provide your *tweak header* as `nonstd/byte.tweak.hpp` in a folder in the include-search-path. In the tweak header, provide definitions as documented below, like `#define byte_CPLUSPLUS 201103L`.
+
 #### Standard selection macro
+
 \-D<b>byte\_CPLUSPLUS</b>=199711L  
 Define this macro to override the auto-detection of the supported C++ standard, if your compiler does not set the `__cpluplus` macro correctly.
 
 #### Select `std::byte` or `nonstd::byte`
+
 At default, *byte lite* uses `std::byte` if it is available and lets you use it via namespace `nonstd`. You can however override this default and explicitly request to use `std::byte` or byte lite's `nonstd::byte` as `nonstd::byte` via the following macros.
 
 -D<b>byte\_CONFIG\_SELECT\_BYTE</b>=byte_BYTE_DEFAULT  
